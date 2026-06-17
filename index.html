@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dealora Savings | Expert Reviews & Curated Deals</title>
+    <meta name="description" content="Discover rigorously tested products and unbeatable savings. We review the best so you can shop with confidence.">
+    <style>
+        /* Modern CSS Reset & Variable Palettes */
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --secondary: #0f172a;
+            --accent: #10b981;
+            --text-main: #334155;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.5;
+        }
+
+        /* Navigation / Header */
+        nav {
+            background: white;
+            padding: 1.25rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--secondary);
+            letter-spacing: -0.05em;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        /* Hero Section with Shimmering Linear Gradient */
+        header {
+            background: radial-gradient(circle at top right, #eef2ff 0%, #e0e7ff 100%);
+            padding: 6rem 2rem;
+            text-align: center;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .badge-hero {
+            display: inline-block;
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--primary);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 1.5rem;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--secondary);
+            letter-spacing: -0.025em;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        header p {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            max-width: 42rem;
+            margin: 0 auto 2.5rem auto;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
+        }
+
+        /* Main Content Grid */
+        .container {
+            max-width: 1200px;
+            margin: 5rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.25rem;
+            color: var(--secondary);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            color: var(--text-light);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Product Card Layout */
+        .card {
+            background: white;
+            border-radius: 1rem;
+            border: 1px solid #f1f5f9;
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: #e2e8f0;
+        }
+
+        .card-tag {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: #f0fdf4;
+            color: var(--accent);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            text-transform: uppercase;
+        }
+
+        .product-meta {
+            margin-bottom: 1.5rem;
+        }
+
+        .icon-wrapper {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .rating {
+            color: #f59e0b;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Review Blockquote style */
+        .verdict {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            background: var(--bg-light);
+            padding: 1rem;
+            border-left: 4px solid var(--primary);
+            border-radius: 0.25rem;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .purchase-zone {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: auto;
+            padding-top: 1.5rem;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+            color: white;
+            padding: 0.625rem 1.25rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+            border-radius: 0.375rem;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background: #1e293b;
+        }
+
+        /* Trust Signals Section */
+        .trust-signals {
+            background: white;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 3rem 1.5rem;
+            text-align: center;
+        }
+
+        .trust-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .signal-item h4 {
+            color: var(--secondary);
+            font-size: 1.125rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .signal-item p {
+            color: var(--text-light);
+            font-size: 0.875rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            color: #94a3b8;
+            padding: 4rem 2rem;
+            text-align: center;
+            font-size: 0.875rem;
+        }
+
+        footer p {
+            max-width: 600px;
+            margin: 0 auto 1.5rem auto;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Dealora<span>Savings</span></div>
+        <div style="font-size: 0.875rem; color: var(--text-light); font-weight: 500;">Independent Reviews</div>
+    </nav>
+
+    <header>
+        <div class="badge-hero">100% Unbiased & Data-Driven</div>
+        <h1>Smart Reviews. Smarter Savings.</h1>
+        <p>We eliminate the guesswork. Our team rigorously tests and filters everyday products to bring you verified recommendations and the absolute best market prices.</p>
+        <a href="#deals" class="btn-primary">View Today's Top Picks</a>
+    </header>
+
+    <section class="trust-signals">
+        <div class="trust-grid">
+            <div class="signal-item">
+                <h4>In-House Testing</h4>
+                <p>No sponsored bias, ever.</p>
+            </div>
+            <div class="signal-item">
+                <h4>Verified Deals</h4>
+                <p>Price checked 12 hours ago.</p>
+            </div>
+            <div class="signal-item">
+                <h4>Secure Outbound</h4>
+                <p>Official merchant links only.</p>
+            </div>
+        </div>
+    </section>
+
+    <main class="container" id="deals">
+        <div class="section-header">
+            <h2>Curated Top Performers</h2>
+            <p>Products that passed our efficiency, durability, and cost-per-value benchmarks.</p>
+        </div>
+
+        <div class="grid">
+            <article class="card" itemscope itemtype="https://schema.org/Product">
+                <span class="card-tag">Best Value</span>
+                <div class="product-meta">
+                    <div class="icon-wrapper">🎧</div>
+                    <h3 class="product-title" itemprop="name">AeroSound Pro-X Wireless</h3>
+                    <div class="rating">★★★★★ <span>(4.8/5 Editor Rating)</span></div>
+                    <div class="verdict">
+                        "Outstanding Active Noise Cancellation for its price tier. Battery performance holds up to 24 hours of active use, though the companion app setup lacks intuitiveness."
+                    </div>
+                </div>
+                <div class="purchase-zone">
+                    <div class="price">$49.99</div>
+                    <a href="#" class="btn-secondary" itemprop="url">Check Deal</a>
+                </div>
+            </article>
+
+            <article class="card" itemscope itemtype="https://schema.org/Product">
+                <span class="card-tag">Top Rated</span>
+                <div class="product-meta">
+                    <div class="icon-wrapper">⌚</div>
+                    <h3 class="product-title" itemprop="name">FitTrack Smartwatch V2</h3>
+                    <div class="rating">★★★★☆ <span>(4.5/5 Editor Rating)</span></div>
+                    <div class="verdict">
+                        "Biometric accuracy rivals premium competitors. The silicone band feels slightly rigid during high-intensity training, but screen visibility under direct sunlight is flawless."
+                    </div>
+                </div>
+                <div class="purchase-zone">
+                    <div class="price">$35.50</div>
+                    <a href="#" class="btn-secondary" itemprop="url">Check Deal</a>
+                </div>
+            </article>
+
+            <article class="card" itemscope itemtype="https://schema.org/Product">
+                <span class="card-tag">Highly Durable</span>
+                <div class="product-meta">
+                    <div class="icon-wrapper">🎒</div>
+                    <h3 class="product-title" itemprop="name">Nomad Waterproof Pack</h3>
+                    <div class="rating">★★★★★ <span>(4.9/5 Editor Rating)</span></div>
+                    <div class="verdict">
+                        "Constructed with genuine 1680D Oxford fabric. Completely impervious to heavy downpours. The rigid structure prevents over-packing, but interior laptop protection is top-tier."
+                    </div>
+                </div>
+                <div class="purchase-zone">
+                    <div class="price">$18.99</div>
+                    <a href="#" class="btn-secondary" itemprop="url">Check Deal</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer>
+        <p>Disclaimer: Dealora Savings is an independent review platform. We may earn an affiliate commission when you purchase through links on our site, at zero absolute cost to you. This keeps our testing operations 100% transparent.</p>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a> | 
+            <a href="#">Terms of Service</a> | 
+            <a href="#">Editorial Guidelines</a>
+        </div>
+        <p style="margin-top: 2rem; font-size: 0.75rem;">&copy; 2026 Dealora Savings. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
